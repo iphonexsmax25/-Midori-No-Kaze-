@@ -2,6 +2,6 @@ import webbrowser
 
 
 def main():
-    webbrowser.open("index.html")
+    webbrowser.open("Functionality\\index.html")
 if __name__ == '__main__':
     main()

@@ -1,5 +1,5 @@
 // Elements to be alterted
-let send_button = document.getElementById("send");
+let submit_button = document.getElementById("submit");
 let dialog_box = document.getElementById("dialog");
 let chat_entry = document.getElementById("entry");
 
@@ -16,6 +16,7 @@ function send_response() {
 }
 
 function add_dialog(text, from_user) {
+    // TO-DO: Alter to match chatbot style.
     const tbox = document.createElement("p")
     let message
     if (from_user) {
