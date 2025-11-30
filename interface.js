@@ -9,10 +9,10 @@ function send_response() {
     add_dialog(response, true)
 
     // TO-DO: Connect to Python's process_data function.
-    alert(response);
+    // alert(response);
 
     // Send response back
-    add_dialog(response, false);
+    add_dialog("processed(" + response + ")", false);
 }
 
 function add_dialog(text, from_user) {
@@ -28,3 +28,6 @@ function add_dialog(text, from_user) {
     tbox.appendChild(message)
     dialog_box.appendChild(tbox)
 }
+
+// Initialize with bot's greeting.
+add_dialog("Hello! Please ask me anything about food nutritions!", false);
