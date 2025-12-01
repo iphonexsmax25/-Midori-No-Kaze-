@@ -3,13 +3,13 @@ This is a chatbot that gives factual information surrounding food and dietary ro
 
 # How to use
 Open a terminal in the current directory and run:
-Windows: python .\main.py
-Linux: python ./main.py
+- Windows: python .\main.py
+- Linux: python ./main.py
 
 Note:
 - You may be required to install packages such as Flask. To install, type:
-  > Windows: pip install flask
-  > Linux: sudo apt install flask
+  - Windows: pip install flask
+  - Linux: sudo apt install flask
 - When executing, the application may open twice. We are currently resolving the issue.
 
 # File Description
