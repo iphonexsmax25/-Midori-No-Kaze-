@@ -1,7 +1,7 @@
 import webbrowser
 from random import random, randint
 from flask import Flask
-from flask_cors import CORS, cross_origin
+from flask_cors import cross_origin
 
 app = Flask(__name__)
 
