@@ -7,6 +7,7 @@ function send_response() {
     // Get response from the end-user
     let response = chat_entry.value;
     add_dialog(response, true)
+    chat_entry.value = ""
 
     // TO-DO: Connect to Python's process_data function.
     // alert(response);
