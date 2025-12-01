@@ -3,31 +3,48 @@ let submit_button = document.getElementById("submit");
 let dialog_box = document.getElementById("dialog");
 let chat_entry = document.getElementById("entry");
 
-function send_response() {
+// Reference: https://www.w3schools.com/jsref/api_fetch.asp
+async function get_reply(prompt) {
+    try{
+    let myObject = await fetch("http://localhost:8000/rand/", {
+        headers: {
+            'Origin': "file:///E:/Python%20Project/HACKATHON/SIM_UOL%20CSSC%202025/-Midori-No-Kaze-/index.html"
+        }
+    });
+    let reply = await myObject.text();
+    return reply;
+    }catch(e){
+        console.log(e)
+    }
+
+}
+
+async function send_response() {
     // Get response from the end-user
     let response = chat_entry.value;
     add_dialog(response, true)
     chat_entry.value = ""
 
     // TO-DO: Connect to Python's process_data function.
-    // alert(response);
+    // Reference: https://www.freecodecamp.org/news/javascript-get-request-tutorial/
+    let reply = await get_reply(response)
 
     // Send response back
-    add_dialog("processed(" + response + ")", false);
+    add_dialog(reply, false);
 }
 
 function add_dialog(text, from_user) {
     // TO-DO: Alter to match chatbot style.
-    const tbox = document.createElement("p")
-    let message
+    const tbox = document.createElement("p");
+    let message;
     if (from_user) {
-        message = document.createTextNode("Me: " + text)
+        message = document.createTextNode("Me: " + text);
     }
     else {
-        message = document.createTextNode("Bot: " + text)
+        message = document.createTextNode("Bot: " + text);
     }
-    tbox.appendChild(message)
-    dialog_box.appendChild(tbox)
+    tbox.appendChild(message);
+    dialog_box.appendChild(tbox);
 }
 
 // Initialize with bot's greeting.
