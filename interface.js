@@ -6,15 +6,12 @@ let chat_entry = document.getElementById("entry");
 // Reference: https://www.w3schools.com/jsref/api_fetch.asp
 async function get_reply(prompt) {
     try{
-    let myObject = await fetch("http://localhost:8000/rand/", {
-        headers: {
-            'Origin': "file:///E:/Python%20Project/HACKATHON/SIM_UOL%20CSSC%202025/-Midori-No-Kaze-/index.html"
-        }
-    });
-    let reply = await myObject.text();
-    return reply;
+        let myObject = await fetch("http://localhost:8000/reply/" + prompt)
+        let reply = await myObject.text();
+        return reply;
     }catch(e){
         console.log(e)
+        return "Something went wrong."
     }
 
 }
