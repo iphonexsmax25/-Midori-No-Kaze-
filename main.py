@@ -1,8 +1,5 @@
-import os, signal, webbrowser
-from random import random, randint
+import os, signal, webbrowser, static.process_prompt as pp
 from flask import Flask, render_template, url_for, request
-from requests import get
-from json import loads
 
 app = Flask(__name__)
 
@@ -10,9 +7,7 @@ app = Flask(__name__)
 def process_user_input():
     try:
         prompt = bytes.decode(request.data)
-        r = get("https://randomfox.ca/floof")
-        d: dict[str, str] = loads(r.content)
-        return prompt[::-1] + f" {random():.1%}<br><img src='{d['image']}' height=128>"
+        return pp.process(prompt)
     except Exception as e:
         return f"I can't reason well. {e}"
 
