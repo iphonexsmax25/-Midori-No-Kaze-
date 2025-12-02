@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Application</title>
+{% endblock %}
+
+{% block body %}
+<div class="banner_head">
+    <h1>Chatbot</h1>
+</div>
+<div id = "dialog"></div>
+<div>
+    <input type="text" id="entry" placeholder="Type message">
+    <button id="submit" onclick="send_response()">submit</button>
+</div>
+<script src="{{ url_for('static', filename='interface.js') }}"></script>
+{% endblock %}
