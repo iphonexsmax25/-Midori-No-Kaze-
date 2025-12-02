@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 body: txt
             });
             const reply = await res.text();
-            console.log(reply)
             addMessage(reply, 'received');
         } catch(err) {
             addMessage('Error connecting to server', 'received');
