@@ -6,12 +6,16 @@ let chat_entry = document.getElementById("entry");
 // Reference: https://www.w3schools.com/jsref/api_fetch.asp
 async function get_reply(prompt) {
     try{
-        let myObject = await fetch("http://localhost:8000/reply/" + prompt)
+        let myObject = await fetch("http://localhost:8000/reply/", {
+            method: "POST",
+            headers: {"Content-type": "text/plain; charset-UTF-8"},
+            body: prompt
+        })
         let reply = await myObject.text();
         return reply;
     }catch(e){
         console.log(e)
-        return "Something went wrong."
+        return "I got lobotomized. Sorry! (404 Not Found)"
     }
 
 }

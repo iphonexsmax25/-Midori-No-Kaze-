@@ -1,19 +1,23 @@
 import os
 import webbrowser
 from random import random, randint
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 from flask_cors import cross_origin
 from requests import get
 from json import loads
 
 app = Flask(__name__)
 
-@app.route('/reply/<prompt>')
+@app.route('/reply/', methods = ["POST"])
 @cross_origin() # Enables CORS for this specific route
-def process_user_input(prompt):
-    r = get("https://randomfox.ca/floof")
-    d: dict[str, str] = loads(r.content)
-    return prompt[::-1] + f" {random():.1%}<br><img src='{d['image']}' height=128>"
+def process_user_input():
+    try:
+        prompt = bytes.decode(request.data)
+        r = get("https://randomfox.ca/floof")
+        d: dict[str, str] = loads(r.content)
+        return prompt[::-1] + f" {random():.1%}<br><img src='{d['image']}' height=128>"
+    except:
+        return "I can't reason well."
 
 @app.route('/')
 def index():
