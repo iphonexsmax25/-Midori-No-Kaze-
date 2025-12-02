@@ -46,13 +46,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // call backend
         try {
-            const res = await fetch('http://127.0.0.1:5000/chat', {
+            const res = await fetch('http://localhost:8000/reply', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({message: txt})
+                headers: {'Content-Type': 'text/plain; charset-UTF-8"'},
+                body: txt
             });
-            const data = await res.json();
-            addMessage(data.reply, 'received');
+            const reply = await res.text();
+            console.log(reply)
+            addMessage(reply, 'received');
         } catch(err) {
             addMessage('Error connecting to server', 'received');
             console.log(err);
@@ -64,8 +65,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const now = new Date();
         const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
         
-        // escape html - probably overkill but whatever
-        text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        // escape html - probably overkill but whatever | yeah it is overkill lol
+        // text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         
         const div = document.createElement('div');
         div.className = 'chatbox-message-item ' + type;
