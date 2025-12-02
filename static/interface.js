@@ -1,58 +1,78 @@
-// Elements to be alterted
-let submit_button = document.getElementById("submit");
-let dialog_box = document.getElementById("dialog");
-let chat_entry = document.getElementById("entry");
+document.addEventListener("DOMContentLoaded", function() {
 
-// Reference: https://www.w3schools.com/jsref/api_fetch.asp
-async function get_reply(prompt) {
-    try{
-        let myObject = await fetch("http://localhost:8000/reply/", {
-            method: "POST",
-            headers: {"Content-type": "text/plain; charset-UTF-8"},
-            body: prompt
-        })
-        let reply = await myObject.text();
-        return reply;
-    }catch(e){
-        console.log(e)
-        return "I got lobotomized. Sorry! (404 Not Found)"
+    // grab elements
+    const msgInput = document.querySelector(".chatbox-input");
+    const form = document.querySelector(".chatbox-form");
+    const chatArea = document.querySelector(".chatbox-content");
+    const emptyMsg = document.querySelector(".chatbox-empty");
+    const menuBtn = document.querySelector(".chatbox-menu-btn");
+    const menu = document.querySelector(".chatbox-menu");
+
+    // auto resize input as user types
+    msgInput.addEventListener("input", function() {
+        msgInput.style.height = "auto"; 
+        if (msgInput.scrollHeight > 120) {
+            msgInput.style.height = "120px";
+        } else {
+            msgInput.style.height = msgInput.scrollHeight + "px";
+        }
+    });
+
+    // menu stuff
+    menuBtn.onclick = function(e) {
+        e.stopPropagation();
+        menu.classList.toggle("show");
+    };
+
+    document.onclick = function(e) {
+        if (!menuBtn.contains(e.target)) {
+            menu.classList.remove("show");
+        }
+    };
+
+    // handle form submit
+    form.onsubmit = async function(e) {
+        e.preventDefault();
+        
+        const txt = msgInput.value.trim();
+        if (txt.replace(/\s/g, '') == '') return; // basic check
+
+        // add user msg
+        addMessage(txt, 'sent');
+        msgInput.value = '';
+        msgInput.style.height = 'auto';
+        
+        if (emptyMsg) emptyMsg.style.display = 'none';
+
+        // call backend
+        try {
+            const res = await fetch('http://127.0.0.1:5000/chat', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({message: txt})
+            });
+            const data = await res.json();
+            addMessage(data.reply, 'received');
+        } catch(err) {
+            addMessage('Error connecting to server', 'received');
+            console.log(err);
+        }
+    };
+
+    // add message to chat
+    function addMessage(text, type) {
+        const now = new Date();
+        const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+        
+        // escape html - probably overkill but whatever
+        text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        
+        const div = document.createElement('div');
+        div.className = 'chatbox-message-item ' + type;
+        div.innerHTML = '<div>' + text.replace(/\n/g, '<br>') + '</div><span class="chatbox-message-time">' + time + '</span>';
+        
+        chatArea.appendChild(div);
+        chatArea.scrollTop = chatArea.scrollHeight; // scroll down
     }
 
-}
-
-async function send_response() {
-    // Get response from the end-user
-    let response = chat_entry.value;
-    add_dialog(response, true)
-    chat_entry.value = ""
-
-    // TO-DO: Connect to Python's process_data function.
-    // Reference: https://www.freecodecamp.org/news/javascript-get-request-tutorial/
-    let reply = await get_reply(response)
-
-    // Send response back
-    add_dialog(reply, false);
-}
-
-function add_dialog(text, from_user) {
-    // TO-DO: Alter to match chatbot style.
-    const tbox = document.createElement("div");
-    tbox.setAttribute("class", "messagebox")
-    let message;
-    if (from_user) {
-        message = "Me: " + text;
-        tbox.appendChild(document.createTextNode(message))
-    }
-    else {
-        message = "Bot: " + text;
-        tbox.innerHTML = message
-    }
-    dialog_box.appendChild(tbox);
-}
-
-window.addEventListener('unload', function (event) {
-    this.fetch("http://localhost:8000/terminate/")
-})
-
-// Initialize with bot's greeting.
-add_dialog("Hello! Please ask me anything about food nutritions!", false);
+});
