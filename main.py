@@ -1,15 +1,12 @@
-import os, signal
-import webbrowser
+import os, signal, webbrowser
 from random import random, randint
 from flask import Flask, render_template, url_for, request
-from flask_cors import cross_origin
 from requests import get
 from json import loads
 
 app = Flask(__name__)
 
 @app.route('/reply/', methods = ["POST"])
-# @cross_origin() # Enables CORS for this specific route
 def process_user_input():
     try:
         prompt = bytes.decode(request.data)
