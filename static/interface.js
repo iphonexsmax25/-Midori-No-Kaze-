@@ -46,13 +46,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // call backend
         try {
-            const res = await fetch('http://localhost:8000/reply', {
+            const res = await fetch('http://localhost:8000/reply/', {
                 method: 'POST',
                 headers: {'Content-Type': 'text/plain; charset-UTF-8"'},
                 body: txt
             });
             const reply = await res.text();
-            console.log(reply)
             addMessage(reply, 'received');
         } catch(err) {
             addMessage('Error connecting to server', 'received');
