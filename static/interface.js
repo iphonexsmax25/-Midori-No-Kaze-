@@ -50,5 +50,9 @@ function add_dialog(text, from_user) {
     dialog_box.appendChild(tbox);
 }
 
+window.addEventListener('unload', function (event) {
+    this.fetch("http://localhost:8000/terminate/")
+})
+
 // Initialize with bot's greeting.
 add_dialog("Hello! Please ask me anything about food nutritions!", false);
