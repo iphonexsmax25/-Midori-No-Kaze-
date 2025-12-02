@@ -32,15 +32,17 @@ async function send_response() {
 
 function add_dialog(text, from_user) {
     // TO-DO: Alter to match chatbot style.
-    const tbox = document.createElement("p");
+    const tbox = document.createElement("div");
+    tbox.setAttribute("class", "messagebox")
     let message;
     if (from_user) {
-        message = document.createTextNode("Me: " + text);
+        message = "Me: " + text;
+        tbox.appendChild(document.createTextNode(message))
     }
     else {
-        message = document.createTextNode("Bot: " + text);
+        message = "Bot: " + text;
+        tbox.innerHTML = message
     }
-    tbox.appendChild(message);
     dialog_box.appendChild(tbox);
 }
 
