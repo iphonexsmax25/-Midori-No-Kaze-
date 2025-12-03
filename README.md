@@ -2,9 +2,9 @@
 This is a chatbot that gives factual information surrounding food and dietary routines.
 
 # Content List
-- [Installation](https://github.com/iphonexsmax25/-Midori-No-Kaze-/edit/main/README.md#installation)
-- [How to Use](https://github.com/iphonexsmax25/-Midori-No-Kaze-/edit/main/README.md#how-to-use)
-- [File Description](https://github.com/iphonexsmax25/-Midori-No-Kaze-/edit/main/README.md#file-description)
+- [Installation](https://github.com/iphonexsmax25/-Midori-No-Kaze-/main/README.md#installation)
+- [How to Use](https://github.com/iphonexsmax25/-Midori-No-Kaze-/main/README.md#how-to-use)
+- [File Description](https://github.com/iphonexsmax25/-Midori-No-Kaze-/main/README.md#file-description)
 
 # Installation
 1. This step will take multiple package installations. This is how to install packages on different OS:
