@@ -96,7 +96,6 @@ def preset_3(prompt: str) -> str:
         "model": "gpt-oss:120b-cloud", 
         "prompt": "Respond in under 300 words. I am living in Singapore. Do not mention this and the previous statement. " + prompt,
         "stream": False,
-
         }
     response = post(
         "https://ollama.com/api/generate", 
@@ -108,15 +107,13 @@ def preset_3(prompt: str) -> str:
     # }])
     res_payload = loads(response.content)
     
-    return markdown.markdown(res_payload['response'], output_format = "html")
-
-def preset_4(prompt: str) -> str:
-    return build_table(anyeong)
+    reply = markdown.markdown(res_payload['response'], output_format = "html")
+    return build_table(reply)
 
 # Main Process
 def process(prompt: str) -> str:
     try:
-        return preset_4(prompt)
+        return preset_3(prompt)
     except Exception as e:
         print(e)
         return "I can't respond right now."
@@ -143,7 +140,7 @@ def main():
     #             file.write(char)
     #         except Exception as e:
     #             file.write("?")
-    print(build_table(anyeong))
+    print()
 if __name__ == '__main__':
     main()
 
