@@ -20,11 +20,14 @@ def image(source: str, **attributes: Any) -> str:
 def encase(element: str, text: str) -> str:
     return f"<{element}>{text}</{element}>"
 
+def plaintext(text: str) -> str:
+    return text.replace("&", '&amp;').replace("<", '&lt;').replace(">", '&gt;')
+
 # Presets
 def preset_1(prompt: str) -> str:
     r = get("https://randomfox.ca/floof")
     d: dict[str, str] = loads(r.content)
-    return f"{prompt[::-1]} {encase("b", f"{random():.1%}")}<br>{image(d['image'], height = 128)}<br>{hyperlink(d['image'], style = "color:red")}"
+    return f"{encase("p", plaintext(prompt[::-1]) + " " + encase("b", f"{random():.1%}"))} <br>{image(d['image'], height = 128)}<br>{hyperlink(d['image'], style = "color:red")}"
 
 def preset_2(prompt: str) -> str:
     cat_gif = image("https://cataas.com/cat/gif", height = 128)
@@ -35,7 +38,7 @@ def preset_2(prompt: str) -> str:
 
 # Main Process
 def process(prompt: str) -> str:
-    return preset_2(prompt)
+    return preset_1(prompt)
 
 def main():
     print(process("Get me an ice cream!"))
