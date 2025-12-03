@@ -1,5 +1,7 @@
+# DIET Torendo (ダイトレ)
+> ダイエットレンド / 'daiettorendo' / 'daitore'
 # Overview
-This is a nutrition chatbot that gives factual information surrounding food and dietary routines.
+DIET Torendo is a nutrition chatbot that gives factual information surrounding food and dietary routines.
 
 # Content List
 - [Installation](https://github.com/iphonexsmax25/-Midori-No-Kaze-/blob/main/README.md#installation)
