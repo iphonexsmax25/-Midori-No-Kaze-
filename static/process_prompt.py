@@ -59,12 +59,12 @@ def build_table(text: str) -> str:
             elements: list[str] = [f"<td>{x}</td>" for x in cols]
 
         # Add Row
-        result.append("<tr>\n" + "\n".join(elements) + "\n</tr>")
+        result.append("<tr>" + "".join(elements) + "</tr>")
 
         # Add end of table tag
         if not in_table:
             result.append("</table>")
-    return "\n".join(result)
+    return "".join(result)
 
 
 # Presets
