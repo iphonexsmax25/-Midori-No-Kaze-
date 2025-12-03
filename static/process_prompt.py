@@ -3,7 +3,7 @@ from random import random, randint
 from requests import get, post
 from json import loads, dumps
 import markdown
-from static.test import text as anyeong
+from static.ollama_info import *
 
 # HTML Attributes
 def compile_attributes(**attributes: Any) -> str:
