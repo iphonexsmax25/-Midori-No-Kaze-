@@ -18,6 +18,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Enter to send (shift + enter for new line)
+    msgInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter" && !e.shiftKey){
+            e.preventDefault();
+            form.dispatchEvent(new Event("submit"));
+        }
+    })
+
     // menu stuff
     menuBtn.onclick = function(e) {
         e.stopPropagation();
