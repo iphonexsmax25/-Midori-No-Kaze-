@@ -16,15 +16,11 @@ This is a chatbot that gives factual information surrounding food and dietary ro
 3. Inside the app directory, initiate a virtual environment ```env``` to store variables and dependencies inside:
   - Windows:
 ```
-mkdir myproject
-cd myproject
 python -m venv .env
 .env\Scripts\activate
 ```
   - Linux:
 ```
-mkdir myproject
-cd myproject
 python3 -m venv .env
 . .env/bin/activate
 ```
