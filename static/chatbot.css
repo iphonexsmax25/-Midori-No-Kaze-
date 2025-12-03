@@ -30,11 +30,11 @@ CHATBOX LAYOUT
 This is basically the shell card for the chat
 */
 .chatbox {
-width: 420px;
-height: 580px;
+width: min(50%, 840px);
+height: min(90%, 1160px);
 display: flex;
 flex-direction: column;
-border-radius: 20px;
+border-radius: 1rem;
 
 background: rgba(255, 255, 255, 0.05);
 backdrop-filter: blur(16px);
@@ -276,6 +276,21 @@ transform: translateY(0); /* quick tap feedback */
 .chatbox-send i {
 font-size: 22px;
 /* could bump this up a bit if we switch icon sets later */
+}
+
+ol, ul {
+  /* margin: 1rem, 1rem; */
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+}
+
+table, th, td, tr {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+p {
+  padding-bottom: 1rem;
 }
 
 /*
