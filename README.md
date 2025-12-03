@@ -1,5 +1,5 @@
 # Overview
-This is a chatbot that gives factual information surrounding food and dietary routines.
+This is a nutrition chatbot that gives factual information surrounding food and dietary routines.
 
 # Content List
 - [Installation](https://github.com/iphonexsmax25/-Midori-No-Kaze-/blob/main/README.md#installation)
@@ -7,22 +7,17 @@ This is a chatbot that gives factual information surrounding food and dietary ro
 - [File Description](https://github.com/iphonexsmax25/-Midori-No-Kaze-/blob/main/README.md#file-description)
 
 # Installation
-1. This step will take multiple package installations. This is how to install packages on different OS:
-    - Windows: ```pip install [PACKAGE]```
-    - Linux: ```sudo apt install [PACKAGE]```
+1. This step will take multiple package installations. This is how to install packages on Windows (other OS is currently not supported):
+```
+pip install [PACKAGE]
+```
 
 2. Clone this repository.
 
 3. Inside the app directory, initiate a virtual environment ```env``` to store variables and dependencies inside:
-  - Windows:
 ```
 python -m venv .env
 .env\Scripts\activate
-```
-  - Linux:
-```
-python3 -m venv .env
-. .env/bin/activate
 ```
 
 4. Install the following packages:
@@ -30,12 +25,21 @@ python3 -m venv .env
     - ```flask``` to run a local server, hosting the application.
     - ```requests``` to initiate HTTP requests for API call.
 
-5. [TO-DO: Explain the setup of API key]
+5. Sign up/sign in on ```ollama.com```, and get the api key.
+
+6. Under the ```static``` directory, add a new file ```ollama_info.py``` and type inside:
+```
+KEY = "[Insert your API Key here]"
+MODEL = "gpt-oss:120b-cloud"
+```
+
+Now you can use the chatbot!
 
 # How to Use
-Open a terminal in the current directory and run:
-- Windows: ```python .\main.py```
-- Linux: ```python ./main.py```
+Run ```main.py``` in your IDE, or open a terminal in the current directory and run:
+```
+python .\main.py
+```
 
 This will run the server on the terminal and open a page in your browser.
 
