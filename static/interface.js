@@ -54,6 +54,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // call backend
         try {
+            await delay(1000)
+            thinkMsg = createThinkMsg();
+            chatArea.appendChild(thinkMsg);
+            chatArea.scrollTop = chatArea.scrollHeight; // scroll down
             const res = await fetch('http://localhost:8000/reply/', {
                 method: 'POST',
                 headers: {'Content-Type': 'text/plain; charset-UTF-8"'},
@@ -61,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             const reply = await res.text();
             // console.log(reply)
+            thinkMsg.remove();
             addMessage(reply, 'received');
         } catch(err) {
             addMessage('Error connecting to server', 'received');
@@ -82,6 +87,19 @@ document.addEventListener("DOMContentLoaded", function() {
         
         chatArea.appendChild(div);
         chatArea.scrollTop = chatArea.scrollHeight; // scroll down
+    }
+
+    // add "thinking" indicator
+    function createThinkMsg() {
+        const thinkMsg = document.createElement("p");
+        thinkMsg.className = 'chatbox-thinking';
+        thinkMsg.innerHTML = 'Thinking...';
+        return thinkMsg;
+    }
+
+    // delay
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
 });

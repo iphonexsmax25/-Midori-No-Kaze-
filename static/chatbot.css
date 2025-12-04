@@ -180,8 +180,20 @@ font-size: 14px;
 margin-top: 40px;     /* tiny separation when it's empty */
 }
 
+.chatbox-thinking {
+text-align: left;
+align-items: start;
+justify-content: end;
+color: #9ca3af;
+font-size: 14px;
+margin-left: 18px;
+margin-bottom: 1rem;
+}
+
 /* MESSAGE BUBBLES – generic base */
 .chatbox-message-item {
+display: flex;
+flex-direction: column;
 max-width: 78%;
 padding: 10px 14px;
 border-radius: 14px;
@@ -189,6 +201,16 @@ line-height: 1.4;
 font-size: 14px;
 position: relative;     /* maybe for future reactions, etc. */
 word-wrap: break-word;
+}
+
+/* Add padding on each elements, */
+.chatbox-message-item * {
+  padding-bottom: 1rem;
+}
+
+/* except the response container. */
+.chatbox-message-item div {
+  padding-bottom: 0;
 }
 
 /* Sent messages (user side) */
@@ -211,6 +233,7 @@ border: 1px solid rgba(255, 255, 255, 0.12);
 font-size: 11px;
 opacity: 0.6;
 margin-top: 3px;
+padding-bottom: 0px;
 display: block;
 }
 
@@ -228,7 +251,7 @@ gap: 10px;
 align-items: center;
 background: rgba(255, 255, 255, 0.05);
 padding: 8px 12px;
-border-radius: 999px;
+border-radius: 2rem;
 border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -281,16 +304,11 @@ font-size: 22px;
 ol, ul {
   /* margin: 1rem, 1rem; */
   padding-left: 1rem;
-  padding-bottom: 1rem;
 }
 
 table, th, td, tr {
     border: 1px solid black;
     border-collapse: collapse;
-}
-
-p {
-  padding-bottom: 1rem;
 }
 
 /*

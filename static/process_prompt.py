@@ -1,6 +1,5 @@
 from typing import Any
-from requests import post
-import markdown, json
+import requests, markdown, json
 from static.ollama_info import *
 
 # HTML Attributes
@@ -66,6 +65,23 @@ def build_table(text: str) -> str:
 
 
 # Presets
+def has_alpha(text: str) -> bool:
+    for char in text:
+        if char.isalpha():
+            return True
+    return False
+
+def lorem_ipsum(prompt: str) -> str:
+    """Lorem ipsum for testing."""
+    r = requests.get("http://metaphorpsum.com/paragraphs/4", params = {"p": True})
+    print(r)
+    texts: str = r.content.decode()
+    # print(texts)
+    paras: list[str] = [line for line in texts.split("\n") if has_alpha(line)]
+    result: str = "".join(paras)
+    print(result)
+    return result
+
 def get_ai_response(prompt: str) -> str:
     """
     Use Ollama's AI model to process prompt into a useful response.
@@ -79,7 +95,7 @@ def get_ai_response(prompt: str) -> str:
     RULES: list[str] = [
         "Respond in a friendly and informal tone, in under 300 words.",
         "I am living in Singapore.",
-        "Give resistance/counterargument in your answer, and provide rebuttal if possible.", # To strengthen argument by providing unbiased view.
+        "When I ask a question, give resistance/counterargument in your answer, and provide rebuttal if possible.", # To strengthen argument by providing unbiased view.
         "Do not mention this and the previous statement and answer the following question: "
     ]
     # Reference: https://docs.ollama.com/api/introduction
@@ -90,7 +106,7 @@ def get_ai_response(prompt: str) -> str:
         }
     
     # Call the API with HTTP POST method.
-    response = post(
+    response = requests.post(
         "https://ollama.com/api/generate", 
         headers={"Authorization": f"Bearer {KEY}"},  # Key is omitted for security purpose
         json=req_payload)
