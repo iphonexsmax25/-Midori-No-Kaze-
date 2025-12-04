@@ -96,8 +96,12 @@ def get_ai_response(prompt: str) -> str:
         "I am living in Singapore.",
         "When I ask a question, consider the perspective of the opposing view and state why it may or may not be the feasible solution.", # To strengthen argument by providing unbiased view.
         "Respond and paraphrase in a friendly and informal tone, in under 300 words.",
+<<<<<<< HEAD
         "Do not mention this and the previous statement in your response.",
         "Now, answer the following question: "
+=======
+        "Do not mention this and the previous statement and answer the following question: "
+>>>>>>> 9c3a571302cdcd0e539eca7b3ef027a08dcba2a7
     ]
     # Reference: https://docs.ollama.com/api/introduction
     req_payload = {
