@@ -60,11 +60,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 body: txt
             });
             const reply = await res.text();
-            console.log(reply)
+            // console.log(reply)
             addMessage(reply, 'received');
         } catch(err) {
             addMessage('Error connecting to server', 'received');
-            console.log(err);
+            // console.log(err);
         }
     };
 

@@ -106,7 +106,6 @@ def process(prompt: str) -> str:
     try:
         return get_ai_response(prompt)
     except Exception as e:
-        print(e)
         return "<p>Cannot connect to the API. Please connect to the Internet and try again.</p>"
 
 def main():
