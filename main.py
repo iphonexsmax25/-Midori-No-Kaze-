@@ -9,7 +9,7 @@ def process_user_input():
         prompt = bytes.decode(request.data)
         return pp.process(prompt)
     except Exception as e:
-        return f"I can't reason well. {e}"
+        return f"<p>I cannot fetch your answer right now. Please restart this application.</p>"
 
 @app.route('/terminate/')
 def terminate():
