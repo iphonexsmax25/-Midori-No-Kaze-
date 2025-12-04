@@ -206,6 +206,7 @@ word-wrap: break-word;
 /* Add padding on each elements, */
 .chatbox-message-item * {
   padding-bottom: 1rem;
+  text-align: justify;
 }
 
 /* except the response container. */
@@ -307,8 +308,12 @@ ol, ul {
 }
 
 table, th, td, tr {
-    border: 1px solid black;
+    border: 1px solid #ffffff;
     border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.5rem;
 }
 
 /*
