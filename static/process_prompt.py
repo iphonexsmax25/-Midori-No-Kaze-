@@ -93,9 +93,9 @@ def get_ai_response(prompt: str) -> str:
     """
     # Rules are used to constrain the prompt.
     RULES: list[str] = [
-        "Respond in a friendly and informal tone, in under 300 words.",
         "I am living in Singapore.",
-        "When I ask a question, give resistance/counterargument in your answer, and provide rebuttal if possible.", # To strengthen argument by providing unbiased view.
+        "When I ask a question, consider the perspective of the opposing view and state why it may or may not be the feasible solution.", # To strengthen argument by providing unbiased view.
+        "Respond and paraphrase in a friendly and informal tone, in under 300 words.",
         "Do not mention this and the previous statement and answer the following question: "
     ]
     # Reference: https://docs.ollama.com/api/introduction
