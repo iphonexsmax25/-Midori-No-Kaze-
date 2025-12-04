@@ -11,11 +11,6 @@ def process_user_input():
     except Exception as e:
         return f"<p>I cannot fetch your answer right now. Please restart this application.</p>"
 
-@app.route('/terminate/')
-def terminate():
-    os.kill(os.getpid(), signal.SIGINT)
-    return ""
-
 @app.route('/')
 def index():
     return render_template('index.html')
